@@ -25,6 +25,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults()) // Habilitar CORS
                 .authorizeHttpRequests(customizeRequests -> {
                             customizeRequests
+                                    .requestMatchers("/api/auth/**").permitAll()
                                     .requestMatchers("/api/customers/**").hasAnyRole("CUSTOMER", "ADMIN")
                                     .requestMatchers(HttpMethod.GET, "/api/pizzas/**").hasAnyRole("CUSTOMER", "ADMIN")
                                     .requestMatchers(HttpMethod.POST, "/api/pizzas/**").hasRole("ADMIN")
